@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS employees;
 DROP TABLE IF EXISTS titles;
 DROP TABLE IF EXISTS departments;
 
--- Create new table
+-- Create new tables
 CREATE TABLE departments (
     dept_no VARCHAR(5) NOT NULL,
     dept_name VARCHAR(40) NOT NULL,
@@ -53,3 +53,11 @@ CREATE TABLE dept_manager (
     FOREIGN KEY (dept_no) REFERENCES departments(dept_no),
     FOREIGN KEY (emp_no) REFERENCES employees(emp_no)
 );
+
+-- Import data from CSV files into corresponding tables
+COPY departments FROM 'departments.csv' DELIMITER ',' CSV HEADER;
+COPY titles FROM 'titles.csv' DELIMITER ',' CSV HEADER;
+COPY employees FROM 'employees.csv' DELIMITER ',' CSV HEADER;
+COPY salaries FROM 'salaries.csv' DELIMITER ',' CSV HEADER;
+COPY dept_emp FROM 'dept_emp.csv' DELIMITER ',' CSV HEADER;
+COPY dept_manager FROM 'dept_manager.csv' DELIMITER ',' CSV HEADER;
